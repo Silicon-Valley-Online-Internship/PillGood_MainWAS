@@ -20,7 +20,7 @@ This project is a web-based project that supports a function that **recognizes f
 
 ## How to install
 ```> git clone https://github.com/Silicon-Valley-Online-Internship/Client-Spring-React.git```
-</br>intellij 에서 프로젝트 run
+</br>intellij 에서 프로젝트 run!
 
 ## How did we link React and SpringBoot?
 1. IntelliJ 에서 제공해주는 Spring initializar를 통해 Spring Boot 프로젝트 생성 (type : Gradle, dependency : Spring Web )</br></br>
