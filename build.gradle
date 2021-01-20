@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
 }
 
 def webappDir = "$projectDir/src/main/React_Client"
@@ -58,4 +59,8 @@ task installReact(type: Exec) {
 
 test {
     useJUnitPlatform()
+}
+
+bootRun {
+    systemProperties System.properties
 }
