@@ -19,7 +19,7 @@ public class FileUploadController {
     @Autowired
     private FileUploadService service;
 
-    @GetMapping("/")
+    @GetMapping("/uploadFile/Test")
     public String uploadControllerMain() {
         return "Hello, This is UploadImageAPI Main";
     }

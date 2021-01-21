@@ -4,7 +4,6 @@ import './App.css';
 import TopMenuComponent from "./component/TopMenuComponent";
 import logo from './logo.svg';
 
-
 function App () {
     const [message, setMessage] = useState("");
     useEffect(() => {

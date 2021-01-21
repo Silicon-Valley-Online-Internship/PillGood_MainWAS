@@ -1,3 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .DS_Store
 .idea/
+build/
+.gradle/
+src/main/React_Client/node_modules
+src/main/React_Client/build
+
