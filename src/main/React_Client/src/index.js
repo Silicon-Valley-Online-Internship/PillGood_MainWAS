@@ -1,14 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Home from "views/Home.js";
+import Main from "views/Main.js";
+import Service from "views/Service.js";
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App/>
-    </React.StrictMode>,
+    // <React.StrictMode>
+    //     <App/>
+    // </React.StrictMode>,
+    <BrowserRouter>
+        <Switch>
+            <Route
+                path="/"
+                exact
+                render={props => <Home {...props} />}
+            />
+            <Route
+                path="/home"
+                exact
+                render={props => <Home {...props} />}
+            />
+            <Route
+                path="/main"
+                exact
+                render={props => <Main {...props} />}
+            />
+            <Route
+                path="/service"
+                exact
+                render={props => <Service {...props} />}
+            />
+            <Redirect to="/" />
+        </Switch>
+    </BrowserRouter>,
     document.getElementById('root')
 );
 
