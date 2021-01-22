@@ -1,11 +1,6 @@
-<<<<<<< Updated upstream
-# Created by .ignore support plugin (hsz.mobi)
-**/node_modules/
-=======
 #React modules
 **/node_modules/
 src/main/React_Client/.eslintcache
->>>>>>> Stashed changes
 
 #Java templates
 *.class
@@ -37,12 +32,7 @@ rabel.xml
 # Gradle
 .gradle
 /build/
-<<<<<<< Updated upstream
-.gradletasknamecache
-=======
 .gradletasknamecache
 /.gradle/
 .gradle/6.7.1/fileHashes/fileHashes.bin
-.gradle/6.7.1/fileHashes/fileHashes.lock
->>>>>>> Stashed changes
 .gradle/6.7.1/fileHashes/fileHashes.lock
