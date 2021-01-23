@@ -62,7 +62,7 @@ export default class UploadFiles extends Component {
                         currentFile: undefined,
                     });
                 });
-    
+
             this.setState({
                 selectedFiles: undefined,
             });
