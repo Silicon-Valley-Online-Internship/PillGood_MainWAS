@@ -41,13 +41,17 @@ public class FileUploadController {
 
         // Flask API Caller Test
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         body.add("image", file.getResource());
+
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
         RestTemplate restTemplate = new RestTemplate();
+
         ResponseEntity<String> responseEntity = restTemplate.exchange(flaskUrl,
                 HttpMethod.POST, requestEntity, String.class);
+
         System.out.println(responseEntity);
 
         return new FileUploadResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
