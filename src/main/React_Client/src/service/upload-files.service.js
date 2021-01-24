@@ -6,11 +6,13 @@ class UploadFilesService {
         let formData = new FormData();
         formData.append("file", file);
 
-        return axios.post("/uploadFile", formData, {
+        let returnJSON = axios.post("/uploadFile", formData, {
             headers: {
                 "Content-Type" : "multipart/form-data"
             }
         })
+
+        return console.log(returnJSON);
     }
 
     getFiles() {
