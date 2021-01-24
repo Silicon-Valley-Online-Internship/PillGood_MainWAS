@@ -24,49 +24,49 @@ export default class UploadFiles extends Component {
             });
         });
     }
-        selectFile(event)
-        {
-            this.setState({
-                selectedFiles: event.target.files,
-            });
-        }
-        upload()
-        {
-            let currentFile = this.state.selectedFiles[0];
+    selectFile(event)
+    {
+        this.setState({
+            selectedFiles: event.target.files,
+        });
+    }
+    upload()
+    {
+        let currentFile = this.state.selectedFiles[0];
 
-            this.setState({
-                progress: 0,
-                currentFile: currentFile,
-            });
+        this.setState({
+            progress: 0,
+            currentFile: currentFile,
+        });
 
-            UploadService.upload(currentFile, (event) => {
+        UploadService.upload(currentFile, (event) => {
+            this.setState({
+                progress: Math.round((100 * event.loaded) / event.total),
+            });
+        })
+            .then((response) => {
                 this.setState({
-                    progress: Math.round((100 * event.loaded) / event.total),
+                    message: response.data.message,
+                });
+                return UploadService.getFiles();
+            })
+            .then((files) => {
+                this.setState({
+                    fileInfos: files.data,
                 });
             })
-                .then((response) => {
-                    this.setState({
-                        message: response.data.message,
-                    });
-                    return UploadService.getFiles();
-                })
-                .then((files) => {
-                    this.setState({
-                        fileInfos: files.data,
-                    });
-                })
-                .catch(() => {
-                    this.setState({
-                        progress: 0,
-                        message: "Could not upload the file!",
-                        currentFile: undefined,
-                    });
+            .catch(() => {
+                this.setState({
+                    progress: 0,
+                    message: "Could not upload the file!",
+                    currentFile: undefined,
                 });
-
-            this.setState({
-                selectedFiles: undefined,
             });
-        }
+
+        this.setState({
+            selectedFiles: undefined,
+        });
+    }
 
     render() {
         const {
