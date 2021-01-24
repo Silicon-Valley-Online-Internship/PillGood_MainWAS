@@ -25,6 +25,9 @@ dependencies {
     compile('com.h2database:h2')
     runtimeOnly('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
 }
 
 def webappDir = "$projectDir/src/main/React_Client"

@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class NutinfoResponseDto {
     private Long id;
-    private String foodName;
+    private String foodname;
     private String calories;
     private String carbohydrate;
     private String protein;
@@ -14,7 +14,7 @@ public class NutinfoResponseDto {
 
     public NutinfoResponseDto(Nutinfo entity) {
         this.id = entity.getId();
-        this.foodName = entity.getFoodName();
+        this.foodname = entity.getFoodname();
         this.calories = entity.getCalories();
         this.carbohydrate = entity.getCarbohydrate();
         this.protein = entity.getProtein();
