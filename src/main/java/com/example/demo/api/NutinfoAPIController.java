@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 public class NutinfoAPIController {
+
     @Autowired
     private final NutinfoService nutinfoService;
 
-    @PostMapping("/api/v1/nut")
+    @PostMapping("/search/nut")
     public Long save(@RequestBody NutinfoSaveRequestDto requestDto) {
         return nutinfoService.save(requestDto);
     }
@@ -26,8 +27,13 @@ public class NutinfoAPIController {
     }
     */
 
-    @GetMapping("/api/v1/nut/{id}")
+    @GetMapping("/search/nut/{id}")
     public NutinfoResponseDto findById (@PathVariable Long id) {
         return nutinfoService.findById(id);
+    }
+
+    @GetMapping("/search/nut/name/{foodname}")
+    public NutinfoResponseDto findByFoodname (@PathVariable String foodname) {
+        return nutinfoService.findByFoodname(foodname);
     }
 }

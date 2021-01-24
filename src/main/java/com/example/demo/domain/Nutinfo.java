@@ -15,8 +15,8 @@ public class Nutinfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String foodName;
+    @Column(nullable = false, unique = true)
+    private String foodname;
 
     @Column(nullable = false)
     private String calories;
@@ -31,18 +31,18 @@ public class Nutinfo {
     private String fat;
 
     @Builder
-    public Nutinfo(String foodName, String calories, String carbohydrate,
+    public Nutinfo(String foodname, String calories, String carbohydrate,
                    String protein, String fat) {
-        this.foodName = foodName;
+        this.foodname = foodname;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
         this.fat = fat;
     }
 
-    public void update(String foodName, String calories, String carbohydrate,
+    public void update(String foodname, String calories, String carbohydrate,
                        String protein, String fat) {
-        this.foodName = foodName;
+        this.foodname = foodname;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;

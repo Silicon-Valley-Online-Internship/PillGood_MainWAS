@@ -23,7 +23,7 @@ public class NutinfoService {
     public Long update(Long id, NutinfoUpdateRequestDto requestDto) {
         Nutinfo nutinfo = infoRepository.findById(id).orElseThrow
                 (() -> new IllegalArgumentException("해당 정보가 존재하지 않습니다. id=" + id));
-        nutinfo.update(requestDto.getFoodName(), requestDto.getCalories(), requestDto.getCarbohydrate(),
+        nutinfo.update(requestDto.getFoodname(), requestDto.getCalories(), requestDto.getCarbohydrate(),
                         requestDto.getProtein(), requestDto.getFat());
         return id;
     }
@@ -31,6 +31,11 @@ public class NutinfoService {
     public NutinfoResponseDto findById(Long id) {
         Nutinfo entity = infoRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 정보가 Table에 존재하지 않습니다. id=" + id));
+        return new NutinfoResponseDto(entity);
+    }
+
+    public NutinfoResponseDto findByFoodname(String foodname) {
+        Nutinfo entity = infoRepository.findByFoodname(foodname);
         return new NutinfoResponseDto(entity);
     }
 }
