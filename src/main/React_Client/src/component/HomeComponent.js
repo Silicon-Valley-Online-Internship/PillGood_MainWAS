@@ -25,6 +25,7 @@ class HomeComponent extends Component {
                                         이 프로젝트는 사진 내의 음식을 인식하고 학습된 데이터를 기반하여 편리한 기능을 지원하는 웹기반 프로젝트입니다.<br/>
                                         This project is a web-based project that supports a function that recognizes food in pictures.<br/>
                                         <img src = {img_loadmap} height={463} width={484}/>
+
                                     </article>
                                 </div>
                             </Fragment>

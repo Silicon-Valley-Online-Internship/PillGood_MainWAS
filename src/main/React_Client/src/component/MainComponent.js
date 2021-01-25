@@ -30,9 +30,6 @@ export default class UploadFiles extends Component {
 
     selectFile(event)
     {
-        // this.setState({
-        //     selectedFiles: event.target.files,
-        // });
         event.preventDefault();
         let reader = new FileReader();
         let file = event.target.files[0];
