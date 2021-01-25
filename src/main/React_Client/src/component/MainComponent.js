@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
 import axios from "axios";
+import NutServiceFetch from "../service/NutServiceFetch";
 
 export default class UploadFiles extends Component {
     constructor(props) {
@@ -17,13 +18,20 @@ export default class UploadFiles extends Component {
             fileInfos: [],
         };
     }
-    componentDidMount() {
+    /**componentDidMount() {
         UploadService.getFiles().then((response) => {
             this.setState({
                 fileInfos: response.data,
             });
         });
+    }**/
+
+    componentDidMount() {
+        NutServiceFetch.getFiles().then(res =>{
+           this.setState({fileInfos : res});
+        });
     }
+
     selectFile(event)
     {
         this.setState({
