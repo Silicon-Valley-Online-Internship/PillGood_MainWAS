@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {Col, Container, Row} from "reactstrap";
+import img_loadmap from "assets/img/teamK_loadmap.png";
 
 
 class HomeComponent extends Component {
@@ -18,11 +19,13 @@ class HomeComponent extends Component {
                                     <span className="d-block pb-4 h2 text-dark border-bottom border-gray">FooDetector Project</span>
 
                                     <article className="pt-5 text-secondary text-justify" style={{ fontSize: '0.9rem', whiteSpace: 'pre-line' }}>
-                                        팀 CoCo(Corona Coder)의 FooDetector 를 소개합니다.<br/>
+                                        팀 CoCo(<span className="text-info">Co</span>rona <span className="text-info">Co</span>der)의 <b>FooDetector</b> 를 소개합니다.<br/>
                                         Introducing CoCo(Corona Coder) Team's FooDetector<br/>
                                         <br/>
                                         이 프로젝트는 사진 내의 음식을 인식하고 학습된 데이터를 기반하여 편리한 기능을 지원하는 웹기반 프로젝트입니다.<br/>
                                         This project is a web-based project that supports a function that recognizes food in pictures.<br/>
+                                        <img src = {img_loadmap} height={463} width={484}/>
+
                                     </article>
                                 </div>
                             </Fragment>

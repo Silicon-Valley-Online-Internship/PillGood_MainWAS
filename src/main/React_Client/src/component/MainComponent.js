@@ -24,20 +24,28 @@ export default class UploadFiles extends Component {
                 fileInfos: response.data,
             });
         });
-    }
-
-    componentDidMount() {
-        NutServiceFetch.getFiles().then(response =>{
-           this.setState({NutInfos : response.data});
+        NutServiceFetch.getFiles().then(response => {
+            this.setState({
+                NutInfos : response.data,
+            });
         });
     }
 
     selectFile(event)
     {
-        this.setState({
-            selectedFiles: event.target.files,
-        });
+        event.preventDefault();
+        let reader = new FileReader();
+        let file = event.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                selectedFiles: event.target.files,
+                file : file,
+                previewURL : reader.result
+            })
+        }
+        reader.readAsDataURL(file);
     }
+
     upload()
     {
         let currentFile = this.state.selectedFiles[0];
@@ -86,6 +94,10 @@ export default class UploadFiles extends Component {
             NutInfos,
         } = this.state;
 
+        let profile_preview = null;
+        if(this.state.file !== ''){
+            profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>
+        }
         return (
             <div>
                 {currentFile && (
@@ -104,16 +116,19 @@ export default class UploadFiles extends Component {
                 )}
 
                 <label className="btn btn-default">
-                    <input type="file" onChange={this.selectFile} />
-                </label>
-
+                    <input type="file"
+                           accept='image/jpg'
+                           name='profile_img'
+                           onChange={this.selectFile} />
+                {/*업로드 버튼*/}
                 <button className="btn btn-success"
                         disabled={!selectedFiles}
                         onClick={this.upload}
                 >
                     Upload
                 </button>
-
+                    {profile_preview}
+                </label>
                 <div className="alert alert-light" role="alert">
                     {message}
                 </div>
