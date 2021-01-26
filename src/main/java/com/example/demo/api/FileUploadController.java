@@ -24,7 +24,7 @@ import java.io.IOException;
 public class FileUploadController {
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
-    // Service URL -> Changable
+    // Service URL -> Changeable
     private static final String flaskUrl = "http://localhost:5000/fileUpload";
     private static final String dbSearchURL = "http://localhost:8080/search/nut/name/{foodname}";
 
@@ -57,7 +57,7 @@ public class FileUploadController {
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(flaskUrl,
                 HttpMethod.POST, requestEntity, String.class);
-        logger.info("Success Receive redict Result from FlaskAPI Server");
+        logger.info("Success Receive predict Result from FlaskAPI Server");
 
         String predict = Jsonhandler.parsingPredict(responseEntity);
         RestTemplate dbTemplate = new RestTemplate();
