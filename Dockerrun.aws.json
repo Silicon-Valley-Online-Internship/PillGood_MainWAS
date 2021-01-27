@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "Image": {
+    "Name": "sjdev/springtest:0.0.1v"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8080"
+    }
+  ]
+}

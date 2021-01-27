@@ -1,0 +1,6 @@
+version: "3"
+services:
+  springtest:
+    image: sjdev222/springtest:0.1.1v
+    expose:
+      - 8080:8080
