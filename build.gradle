@@ -17,20 +17,25 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation 'junit:junit:4.12'
-    implementation("org.mariadb.jdbc:mariadb-java-client:2.1.2")
-    compileOnly('org.projectlombok:lombok')
     compile('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
-    compile('com.h2database:h2')
-    runtimeOnly('com.h2database:h2')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
+
+    // Database
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    // - MariaDB
+    compile('org.mariadb.jdbc:mariadb-java-client')
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '3.3.0'
+    // - H2database
+    //compile('com.h2database:h2')
+    //runtimeOnly('com.h2database:h2')
 }
 
 def webappDir = "$projectDir/src/main/React_Client"

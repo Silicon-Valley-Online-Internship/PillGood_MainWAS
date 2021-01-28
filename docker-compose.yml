@@ -1,6 +1,22 @@
-version: "3"
+version: "3.7"
+
+networks:
+  inner-net:
+    driver: bridge
+
 services:
-  springtest:
-    image: sjdev222/springtest:0.1.1v
-    expose:
+  springservice:
+    container_name: springservice
+    image: sjdev222/springboot:0.9.1
+    ports:
       - 8080:8080
+    networks:
+      - inner-net
+
+  flaskservice:
+    container_name: flaskservice
+    image: sjdev222/flaskapi:0.4.2
+    ports:
+      - 5000:5000
+    networks:
+      - inner-net
