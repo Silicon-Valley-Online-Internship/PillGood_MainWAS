@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
 import axios from "axios";
-import NutServiceFetch from "../service/NutServiceFetch";
 
 export default class UploadFiles extends Component {
     constructor(props) {
@@ -14,19 +13,17 @@ export default class UploadFiles extends Component {
             currentFile: undefined,
             progress: 0,
             message: "",
+
             fileInfos: [],
-            NutInfos: [],
+
+            file : '',
+            previewURL : ''
         };
     }
     componentDidMount() {
         UploadService.getFiles().then((response) => {
             this.setState({
                 fileInfos: response.data,
-            });
-        });
-        NutServiceFetch.getFiles().then(response => {
-            this.setState({
-                NutInfos : response.data,
             });
         });
     }
@@ -91,7 +88,6 @@ export default class UploadFiles extends Component {
             progress,
             message,
             fileInfos,
-            NutInfos,
         } = this.state;
 
         let profile_preview = null;
@@ -142,12 +138,6 @@ export default class UploadFiles extends Component {
                                 <a href={file.url}>{file.name}</a>
                             </li>
                         ))}
-                        {NutInfos &&
-                        NutInfos.map((Nut,index) => (
-                            <li className="list-group-item-nut" key={index}>
-                                <a href={Nut.id}></a>
-                            </li>
-                            ))}
                     </ul>
                 </div>
             </div>
