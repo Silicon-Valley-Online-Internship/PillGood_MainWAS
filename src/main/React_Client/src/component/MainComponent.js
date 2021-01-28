@@ -163,14 +163,14 @@ export default class UploadFiles extends Component {
                         <tbody>
                         {
                             this.state.NutInfos.map(
-                                NutInfo =>
-                                    <tr key = {NutInfo.id}>
-                                        <td> {NutInfo.id}</td>
-                                        <td> {NutInfo.foodname}</td>
-                                        <td> {NutInfo.calories}</td>
-                                        <td> {NutInfo.carbohydrate}</td>
-                                        <td> {NutInfo.protein}</td>
-                                        <td> {NutInfo.fat}</td>
+                                Nutinfo =>
+                                    <tr key = {Nutinfo.id}>
+                                        <td> {Nutinfo.id}</td>
+                                        <td> {Nutinfo.foodname}</td>
+                                        <td> {Nutinfo.calories}</td>
+                                        <td> {Nutinfo.carbohydrate}</td>
+                                        <td> {Nutinfo.protein}</td>
+                                        <td> {Nutinfo.fat}</td>
 
                                     </tr>
                             )

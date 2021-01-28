@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const REST_API_URL = 'http://localhost:8080/search/nut';
+const REST_API_URL = "/uploadFile";
 
 class NutServiceFetch {
     getFiles() {
-        return axios.get(REST_API_URL);
+        return axios.post(REST_API_URL);
     }
 }
 
