@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
 import axios from "axios";
-import NutServiceFetch from "../service/NutServiceFetch";
+import NutService from "../service/NutServiceFetch";
 
 export default class UploadFiles extends Component {
     constructor(props) {
@@ -17,18 +17,6 @@ export default class UploadFiles extends Component {
             fileInfos: [],
             NutInfos: [],
         };
-    }
-    componentDidMount() {
-        UploadService.getFiles().then((response) => {
-            this.setState({
-                fileInfos: response.data,
-            });
-        });
-        NutServiceFetch.getFiles().then(response => {
-            this.setState({
-                NutInfos : response.data,
-            });
-        });
     }
 
     selectFile(event)
@@ -81,6 +69,17 @@ export default class UploadFiles extends Component {
 
         this.setState({
             selectedFiles: undefined,
+        });
+    }
+    componentDidMount() {
+        UploadService.getFiles().then((response) => {
+            this.setState({
+                fileInfos: response.data,
+            });
+        });
+        NutService.getFiles().then((response) => {
+            this.setState({
+                NutInfos : response.data})
         });
     }
 
@@ -142,14 +141,46 @@ export default class UploadFiles extends Component {
                                 <a href={file.url}>{file.name}</a>
                             </li>
                         ))}
-                        {NutInfos &&
-                        NutInfos.map((Nut,index) => (
-                            <li className="list-group-item-nut" key={index}>
-                                <a href={Nut.id}></a>
-                            </li>
-                            ))}
                     </ul>
                 </div>
+
+                <div>
+                    <h1 className = "text-center"> Food Information</h1>
+                    <table className = "table table-striped">
+                        <thead>
+                        <tr>
+
+                            <td> Food id</td>
+                            <td> Food name</td>
+                            <td> Calories</td>
+                            <td> Carbohydrate</td>
+                            <td> Protein</td>
+                            <td> Fat</td>
+
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        {
+                            this.state.NutInfos.map(
+                                NutInfo =>
+                                    <tr key = {NutInfo.id}>
+                                        <td> {NutInfo.id}</td>
+                                        <td> {NutInfo.foodname}</td>
+                                        <td> {NutInfo.calories}</td>
+                                        <td> {NutInfo.carbohydrate}</td>
+                                        <td> {NutInfo.protein}</td>
+                                        <td> {NutInfo.fat}</td>
+
+                                    </tr>
+                            )
+                        }
+
+                        </tbody>
+                    </table>
+
+                </div>
+
             </div>
         );
     }
