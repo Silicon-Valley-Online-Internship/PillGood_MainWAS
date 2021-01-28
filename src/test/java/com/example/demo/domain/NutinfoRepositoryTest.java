@@ -33,7 +33,7 @@ public class NutinfoRepositoryTest {
         String fat = "Test fat";
 
         nutinfoRepository.save(Nutinfo.builder()
-                                .foodName(foodName)
+                                .foodname(foodName)
                                 .calories(calories)
                                 .carbohydrate(carbohydrate)
                                 .protein(protein)
@@ -45,7 +45,7 @@ public class NutinfoRepositoryTest {
 
         //then
         Nutinfo nutinfo = nutinfoList.get(0);
-        assertThat(nutinfo.getFoodName()).isEqualTo(foodName);
+        assertThat(nutinfo.getFoodname()).isEqualTo(foodName);
         assertThat(nutinfo.getCalories()).isEqualTo(calories);
         assertThat(nutinfo.getCarbohydrate()).isEqualTo(carbohydrate);
         assertThat(nutinfo.getProtein()).isEqualTo(protein);

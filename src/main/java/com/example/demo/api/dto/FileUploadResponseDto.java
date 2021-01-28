@@ -1,7 +1,6 @@
 package com.example.demo.api.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class FileUploadResponseDto {

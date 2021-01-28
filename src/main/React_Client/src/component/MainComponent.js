@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
 import axios from "axios";
+import NutServiceFetch from "../service/NutServiceFetch";
 
 export default class UploadFiles extends Component {
     constructor(props) {
@@ -13,8 +14,8 @@ export default class UploadFiles extends Component {
             currentFile: undefined,
             progress: 0,
             message: "",
-
             fileInfos: [],
+            NutInfos: [],
         };
     }
     componentDidMount() {
@@ -23,50 +24,65 @@ export default class UploadFiles extends Component {
                 fileInfos: response.data,
             });
         });
+        NutServiceFetch.getFiles().then(response => {
+            this.setState({
+                NutInfos : response.data,
+            });
+        });
     }
-        selectFile(event)
-        {
+
+    selectFile(event)
+    {
+        event.preventDefault();
+        let reader = new FileReader();
+        let file = event.target.files[0];
+        reader.onloadend = () => {
             this.setState({
                 selectedFiles: event.target.files,
-            });
+                file : file,
+                previewURL : reader.result
+            })
         }
-        upload()
-        {
-            let currentFile = this.state.selectedFiles[0];
+        reader.readAsDataURL(file);
+    }
 
+    upload()
+    {
+        let currentFile = this.state.selectedFiles[0];
+
+        this.setState({
+            progress: 0,
+            currentFile: currentFile,
+        });
+
+        UploadService.upload(currentFile, (event) => {
             this.setState({
-                progress: 0,
-                currentFile: currentFile,
+                progress: Math.round((100 * event.loaded) / event.total),
             });
-
-            UploadService.upload(currentFile, (event) => {
+        })
+            .then((response) => {
                 this.setState({
-                    progress: Math.round((100 * event.loaded) / event.total),
+                    message: response.data.message,
+                });
+                return UploadService.getFiles();
+            })
+            .then((files) => {
+                this.setState({
+                    fileInfos: files.data,
                 });
             })
-                .then((response) => {
-                    this.setState({
-                        message: response.data.message,
-                    });
-                    return UploadService.getFiles();
-                })
-                .then((files) => {
-                    this.setState({
-                        fileInfos: files.data,
-                    });
-                })
-                .catch(() => {
-                    this.setState({
-                        progress: 0,
-                        message: "Could not upload the file!",
-                        currentFile: undefined,
-                    });
+            .catch(() => {
+                this.setState({
+                    progress: 0,
+                    message: "Could not upload the file!",
+                    currentFile: undefined,
                 });
-
-            this.setState({
-                selectedFiles: undefined,
             });
-        }
+
+        this.setState({
+            selectedFiles: undefined,
+        });
+    }
 
     render() {
         const {
@@ -75,8 +91,13 @@ export default class UploadFiles extends Component {
             progress,
             message,
             fileInfos,
+            NutInfos,
         } = this.state;
 
+        let profile_preview = null;
+        if(this.state.file !== ''){
+            profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>
+        }
         return (
             <div>
                 {currentFile && (
@@ -95,16 +116,19 @@ export default class UploadFiles extends Component {
                 )}
 
                 <label className="btn btn-default">
-                    <input type="file" onChange={this.selectFile} />
-                </label>
-
+                    <input type="file"
+                           accept='image/jpg'
+                           name='profile_img'
+                           onChange={this.selectFile} />
+                {/*업로드 버튼*/}
                 <button className="btn btn-success"
                         disabled={!selectedFiles}
                         onClick={this.upload}
                 >
                     Upload
                 </button>
-
+                    {profile_preview}
+                </label>
                 <div className="alert alert-light" role="alert">
                     {message}
                 </div>
@@ -118,6 +142,12 @@ export default class UploadFiles extends Component {
                                 <a href={file.url}>{file.name}</a>
                             </li>
                         ))}
+                        {NutInfos &&
+                        NutInfos.map((Nut,index) => (
+                            <li className="list-group-item-nut" key={index}>
+                                <a href={Nut.id}></a>
+                            </li>
+                            ))}
                     </ul>
                 </div>
             </div>
