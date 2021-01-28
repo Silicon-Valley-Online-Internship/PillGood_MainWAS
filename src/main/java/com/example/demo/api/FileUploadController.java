@@ -19,29 +19,17 @@ public class FileUploadController {
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
     // Service URL -> Changeable
-    private static final String flaskUrl = "http://flaskservice:5000/fileUpload";
+
+    // service 용 URL
+    //private static final String flaskUrl = "http://flaskservice:5000/fileUpload";
+
+    // local TEST용 URL (from AWS Server)
+    private static final String flaskUrl = "http://3.238.25.211:5000/fileUpload";
+
     private static final String dbSearchURL = "http://localhost:8080/search/nut/name/{foodname}";
 
     @Autowired
     private FileUploadService service;
-
-    @GetMapping("/springhello")
-    public String hello() {
-        return "HelloSpring";
-    }
-
-    @GetMapping("/hello")
-    public String helloTest() {
-        HttpHeaders headers = new HttpHeaders();
-        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<String> responseEntity = restTemplate.exchange("http://flaskservice:5000/hello",
-                HttpMethod.GET, requestEntity, String.class);
-
-        return responseEntity.getBody();
-    }
 
     @GetMapping("/uploadFile/Test")
     public String uploadControllerMain() {
