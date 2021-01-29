@@ -49,8 +49,10 @@ export default class UploadFiles extends Component {
             });
         })
             .then((response) => {
+                console.log(response)
                 this.setState({
-                    message: response.data.message,
+
+                    message: response,
                 });
                 return UploadService.getFiles();
             })
@@ -78,6 +80,7 @@ export default class UploadFiles extends Component {
             });
         });
         NutService.getFiles().then((response) => {
+            console.log(response)
             this.setState({
                 NutInfos : response.data})
         });
@@ -145,8 +148,8 @@ export default class UploadFiles extends Component {
                 </div>
 
                 <div>
-                    <h1 className = "text-center"> Food Information</h1>
-                    <table className = "table table-striped">
+                    <h1 className="text-center"> Food Information</h1>
+                    <table className="table table-striped">
                         <thead>
                         <tr>
 
@@ -162,23 +165,19 @@ export default class UploadFiles extends Component {
                         </thead>
                         <tbody>
                         {
-                            this.state.NutInfos.map(
-                                Nutinfo =>
-                                    <tr key = {Nutinfo.id}>
-                                        <td> {Nutinfo.id}</td>
-                                        <td> {Nutinfo.foodname}</td>
-                                        <td> {Nutinfo.calories}</td>
-                                        <td> {Nutinfo.carbohydrate}</td>
-                                        <td> {Nutinfo.protein}</td>
-                                        <td> {Nutinfo.fat}</td>
-
-                                    </tr>
+                        NutInfos.map(
+                        nutinfo =>
+                            <tr key={nutinfo.id}>
+                            <td> {nutinfo.foodname}</td>
+                            <td> {nutinfo.calories}</td>
+                            <td> {nutinfo.carbohydrate}</td>
+                            <td> {nutinfo.protein}</td>
+                            <td> {nutinfo.fat}</td>
+                            </tr>
                             )
                         }
-
                         </tbody>
                     </table>
-
                 </div>
 
             </div>
