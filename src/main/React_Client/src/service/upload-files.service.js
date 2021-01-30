@@ -8,20 +8,18 @@ class UploadFilesService {
 
         const returnJSON = axios.post("/uploadFile", formData, {
             headers: {
-                "Content-Type" : "multipart/form-data"
-            }
-        })
-
-
+                "Content-Type": "multipart/form-data"
+            },
+            onUploadProgress,
+        });
 
         return JSON.parse((await returnJSON).data.predictNutinfo)
 
-
     }
 
-    getFiles() {
-        return http.get("/files");
-    }
+    async getFiles() {
+        return http.get("/uploadFile");
+            }
 }
 
 export default new UploadFilesService();

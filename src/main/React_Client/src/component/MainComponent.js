@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
 import axios from "axios";
-import NutService from "../service/NutServiceFetch";
 
-export default class UploadFiles extends Component {
+export default class MainComponent extends Component {
     constructor(props) {
         super(props);
         this.selectFile = this.selectFile.bind(this);
@@ -14,9 +13,17 @@ export default class UploadFiles extends Component {
             currentFile: undefined,
             progress: 0,
             message: "",
-            fileInfos: [],
             NutInfos: [],
+            loading: false
         };
+    }
+
+    componentDidMount() {
+        UploadService.getFiles().then((response) => {
+            this.setState({
+                NutInfos : response.data,
+            });
+        });
     }
 
     selectFile(event)
@@ -49,40 +56,32 @@ export default class UploadFiles extends Component {
             });
         })
             .then((response) => {
-                console.log(response)
-                this.setState({
+                var test = JSON.stringify((response))
 
-                    message: response,
+                this.state.NutInfos.push(response)
+                this.setState({
+                    NutInfos: this.state.NutInfos,
+                    message: response.data.message,
                 });
+
                 return UploadService.getFiles();
             })
-            .then((files) => {
-                this.setState({
-                    fileInfos: files.data,
-                });
-            })
+
             .catch(() => {
                 this.setState({
                     progress: 0,
                     message: "Could not upload the file!",
                     currentFile: undefined,
                 });
-            });
+            }).finally(() => {
+
+                this.setState({
+                    loading:true,
+                })
+        });
 
         this.setState({
             selectedFiles: undefined,
-        });
-    }
-    componentDidMount() {
-        UploadService.getFiles().then((response) => {
-            this.setState({
-                fileInfos: response.data,
-            });
-        });
-        NutService.getFiles().then((response) => {
-            console.log(response)
-            this.setState({
-                NutInfos : response.data})
         });
     }
 
@@ -92,8 +91,6 @@ export default class UploadFiles extends Component {
             currentFile,
             progress,
             message,
-            fileInfos,
-            NutInfos,
         } = this.state;
 
         let profile_preview = null;
@@ -122,34 +119,22 @@ export default class UploadFiles extends Component {
                            accept='image/jpg'
                            name='profile_img'
                            onChange={this.selectFile} />
-                {/*업로드 버튼*/}
-                <button className="btn btn-success"
-                        disabled={!selectedFiles}
-                        onClick={this.upload}
-                >
-                    Upload
-                </button>
+                    {/*업로드 버튼*/}
+                    <button className="btn btn-success"
+                            disabled={!selectedFiles}
+                            onClick={this.upload}
+                    >
+                        Upload
+                    </button>
                     {profile_preview}
                 </label>
                 <div className="alert alert-light" role="alert">
                     {message}
                 </div>
 
-                <div className="card">
-                    <div className="card-header">List of Files</div>
-                    <ul className="list-group list-group-flush">
-                        {fileInfos &&
-                        fileInfos.map((file, index) => (
-                            <li className="list-group-item" key={index}>
-                                <a href={file.url}>{file.name}</a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
                 <div>
-                    <h1 className="text-center"> Food Information</h1>
-                    <table className="table table-striped">
+                    <h1 className = "text-center"> Food Information</h1>
+                    <table className = "table table-striped">
                         <thead>
                         <tr>
 
@@ -163,20 +148,28 @@ export default class UploadFiles extends Component {
                         </tr>
 
                         </thead>
-                        <tbody>
-                        {
-                        NutInfos.map(
-                        nutinfo =>
-                            <tr key={nutinfo.id}>
-                            <td> {nutinfo.foodname}</td>
-                            <td> {nutinfo.calories}</td>
-                            <td> {nutinfo.carbohydrate}</td>
-                            <td> {nutinfo.protein}</td>
-                            <td> {nutinfo.fat}</td>
-                            </tr>
-                            )
-                        }
-                        </tbody>
+                        {!this.state.loading ?
+                            (
+                                null
+                            ) :
+                            (
+                                <tbody>
+                                {
+                                    Object.keys(this.state.NutInfos).map((item, i) => (
+                                        <tr key={{i}}>
+                                            <td>{this.state.NutInfos[i].id}</td>
+                                            <td>{this.state.NutInfos[i].foodname}</td>
+                                            <td>{this.state.NutInfos[i].calories}</td>
+                                            <td>{this.state.NutInfos[i].carbohydrate}</td>
+                                            <td>{this.state.NutInfos[i].protein}</td>
+                                            <td>{this.state.NutInfos[i].fat}</td>
+                                        </tr>
+                                    ))
+
+                                }
+                                </tbody>
+                            )}
+
                     </table>
                 </div>
 
