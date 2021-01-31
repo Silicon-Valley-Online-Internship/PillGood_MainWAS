@@ -13,15 +13,19 @@ public class NutinfoSaveRequestDto {
     private String carbohydrate;
     private String protein;
     private String fat;
+    private String allergic;
+    private String standard;
 
     @Builder
     public NutinfoSaveRequestDto(String foodname, String calories, String carbohydrate,
-                                 String protein, String fat) {
+                                 String protein, String fat, String allergic, String standard) {
         this.foodname = foodname;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
         this.fat = fat;
+        this.allergic = allergic;
+        this.standard = standard;
     }
 
     public Nutinfo toEntity() {
@@ -31,6 +35,8 @@ public class NutinfoSaveRequestDto {
                 .carbohydrate(carbohydrate)
                 .protein(protein)
                 .fat(fat)
+                .allergic(allergic)
+                .standard(standard)
                 .build();
     }
 }

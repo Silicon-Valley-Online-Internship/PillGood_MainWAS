@@ -7,7 +7,7 @@ networks:
 services:
   springservice:
     container_name: springservice
-    image: sjdev222/springboot:0.9.1
+    image: sjdev222/springboot:0.9.5
     ports:
       - 8080:8080
     networks:

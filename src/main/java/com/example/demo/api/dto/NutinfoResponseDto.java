@@ -11,6 +11,8 @@ public class NutinfoResponseDto {
     private String carbohydrate;
     private String protein;
     private String fat;
+    private String allergic;
+    private String standard;
 
     public NutinfoResponseDto(Nutinfo entity) {
         this.id = entity.getId();
@@ -19,5 +21,7 @@ public class NutinfoResponseDto {
         this.carbohydrate = entity.getCarbohydrate();
         this.protein = entity.getProtein();
         this.fat = entity.getFat();
+        this.allergic = entity.getAllergic();
+        this.standard = entity.getStandard();
     }
 }
