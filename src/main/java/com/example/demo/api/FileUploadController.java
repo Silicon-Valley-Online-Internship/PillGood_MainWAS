@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.api.dto.FileUploadResponseDto;
 import com.example.demo.api.dto.ImagePredictResponseDto;
 import com.example.demo.domain.json.Jsonhandler;
 import com.example.demo.service.FileUploadService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class FileUploadController {
@@ -62,6 +64,5 @@ public class FileUploadController {
 
         return new ResponseEntity<ImagePredictResponseDto>(responseDto, HttpStatus.OK);
     }
-
 
 }
