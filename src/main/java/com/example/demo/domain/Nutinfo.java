@@ -30,22 +30,32 @@ public class Nutinfo {
     @Column(nullable = false)
     private String fat;
 
+    @Column(nullable = false)
+    private String allergic;
+
+    @Column(nullable = false)
+    private String standard;
+
     @Builder
     public Nutinfo(String foodname, String calories, String carbohydrate,
-                   String protein, String fat) {
+                   String protein, String fat, String allergic, String standard) {
         this.foodname = foodname;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
         this.fat = fat;
+        this.allergic = allergic;
+        this.standard = standard;
     }
 
     public void update(String foodname, String calories, String carbohydrate,
-                       String protein, String fat) {
+                       String protein, String fat, String allergic, String standard) {
         this.foodname = foodname;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
         this.fat = fat;
+        this.allergic = allergic;
+        this.standard = standard;
     }
 }

@@ -54,30 +54,23 @@ export default class MainComponent extends Component {
             this.setState({
                 progress: Math.round((100 * event.loaded) / event.total),
             });
-        })
-            .then((response) => {
-                var test = JSON.stringify((response))
-
-                this.state.NutInfos.push(response)
-                this.setState({
-                    NutInfos: this.state.NutInfos,
-                    message: response.data.message,
-                });
-
-                return UploadService.getFiles();
+        }).then((response) => {
+            this.state.NutInfos.push(response)
+            this.setState({
+                NutInfos: this.state.NutInfos,
+                message: response.data.message,
+            });
+            return UploadService.getFiles();
+        }).catch(() => {
+            this.setState({
+                progress: 0,
+                message: "Could not upload the file!",
+                currentFile: undefined,
+            });
+        }).finally(() => {
+            this.setState({
+                loading:true,
             })
-
-            .catch(() => {
-                this.setState({
-                    progress: 0,
-                    message: "Could not upload the file!",
-                    currentFile: undefined,
-                });
-            }).finally(() => {
-
-                this.setState({
-                    loading:true,
-                })
         });
 
         this.setState({

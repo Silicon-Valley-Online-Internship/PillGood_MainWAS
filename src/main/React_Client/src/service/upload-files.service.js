@@ -13,6 +13,8 @@ class UploadFilesService {
             onUploadProgress,
         });
 
+        console.log(JSON.parse((await returnJSON).data.predictNutinfo));
+
         return JSON.parse((await returnJSON).data.predictNutinfo)
 
     }

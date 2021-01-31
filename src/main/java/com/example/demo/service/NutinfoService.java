@@ -24,7 +24,7 @@ public class NutinfoService {
         Nutinfo nutinfo = infoRepository.findById(id).orElseThrow
                 (() -> new IllegalArgumentException("해당 정보가 존재하지 않습니다. id=" + id));
         nutinfo.update(requestDto.getFoodname(), requestDto.getCalories(), requestDto.getCarbohydrate(),
-                        requestDto.getProtein(), requestDto.getFat());
+                        requestDto.getProtein(), requestDto.getFat(), requestDto.getAllergic(), requestDto.getStandard());
         return id;
     }
 
