@@ -13,15 +13,15 @@ class UploadFilesService {
             onUploadProgress,
         });
 
-        console.log(JSON.parse((await returnJSON).data.predictNutinfo));
+        console.log(JSON.parse((await returnJSON).data.predictPillinfo));
 
-        return JSON.parse((await returnJSON).data.predictNutinfo)
+        return JSON.parse((await returnJSON).data.predictPillinfo)
 
     }
 
     async getFiles() {
         return http.get("/uploadFile");
-            }
+    }
 }
 
 export default new UploadFilesService();
