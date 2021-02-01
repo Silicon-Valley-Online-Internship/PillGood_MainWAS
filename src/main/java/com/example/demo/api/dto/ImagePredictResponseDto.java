@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public class ImagePredictResponseDto {
     private String predict;
-    private String predictNutinfo;
+    private String predictinfo;
 
-    public ImagePredictResponseDto(String predict, String predictNutinfo) {
+    public ImagePredictResponseDto(String predict, String predictinfo) {
         this.predict = predict;
-        this.predictNutinfo = predictNutinfo;
+        this.predictinfo = predictinfo;
     }
 }
