@@ -28,15 +28,11 @@ public class FileUploadController {
     // local TEST용 URL (from AWS Server)
     private static final String flaskUrl = "http://3.238.25.211:5000/fileUpload";
 
-    private static final String dbSearchURL = "http://localhost:8080/search/nut/name/{foodname}";
+    //private static final String dbSearchURL = "http://localhost:8080/search/nut/name/{foodname}";
+    private static final String dbSearchURL = "http://localhost:8080/search/pill/name/{pillname}";
 
     @Autowired
     private FileUploadService service;
-
-    @GetMapping("/uploadFile/Test")
-    public String uploadControllerMain() {
-        return "Hello, This is UploadImageAPI Main";
-    }
 
     @PostMapping("/uploadFile")
     public ResponseEntity<ImagePredictResponseDto> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
@@ -58,7 +54,7 @@ public class FileUploadController {
         logger.info("####FLASK API PREDICT : " + predict);
         RestTemplate dbTemplate = new RestTemplate();
         String dbReutrn = dbTemplate.getForObject(dbSearchURL, String.class, predict);
-        logger.info("Success Data Loading from NUTINFO Database");
+        logger.info("Success Data Loading INFO from Database");
 
         ImagePredictResponseDto responseDto = new ImagePredictResponseDto(predict, dbReutrn);
 
