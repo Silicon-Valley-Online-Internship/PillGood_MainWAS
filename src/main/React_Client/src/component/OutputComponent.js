@@ -23,17 +23,17 @@ export default class OutputComponent extends Component {
             <div>
                 <div>
                     <h1 className = "text-center"> Pill Information</h1>
-                    <table className = "table table-striped">
+                    <table className = "table table-striped" style={{color:"white"}} >
                         <thead>
                         <tr>
 
-                            <td> Pill id</td>
-                            <td> Pill name</td>
-                            <td> Pill effect </td>
-                            <td> Pill company </td>
-                            <td> Pill engrave </td>
-                            <td> Pill sideeffect</td>
-                            <td> Pill url</td>
+                            <td> id</td>
+                            <td> name</td>
+                            <td> effect </td>
+                            <td> company </td>
+                            <td> engrave </td>
+                            <td> sideeffect</td>
+                            <td> url</td>
 
                         </tr>
 
