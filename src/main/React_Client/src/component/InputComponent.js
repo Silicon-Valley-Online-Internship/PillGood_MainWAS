@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
 import "views/HomeView.css"
+import img_preview from "../assets/img/previewimg.jpg";
+
 export default class InputComponent extends Component {
     constructor(props) {
         super(props);
@@ -77,8 +79,18 @@ export default class InputComponent extends Component {
 
         let profile_preview = null;
         if(this.state.file !== ''){
-            profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>
+            if(typeof this.state.file !== 'undefined') {
+                profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>;
+                console.log("사진있음");
+                console.log(this.state.file);
+            }
+            else {
+                profile_preview = <img className='profile_preview' src={img_preview}></img>;
+                console.log("사진없음");
+            }
         }
+
+
         return (
             <div>
                 {currentFile && (
@@ -96,20 +108,22 @@ export default class InputComponent extends Component {
                     </div>
                 )}
 
-                <label className="btn btn-default">
-                    <input type="file"
+                <div className="filebox bs3-warning">
+                    <label style = {{margin:0, marginRight:10}} htmlFor="ex_file2">Find your photo</label>
+                    <input type="file" id="ex_file2"
                            accept='image/jpg'
                            name='profile_img'
                            onChange={this.selectFile} />
+
                     {/*업로드 버튼*/}
-                    <button className="btn btn-secondary active"
+                    <button style={{marginLeft:10}} className="btn btn-dark active"
                             disabled={!selectedFiles}
                             onClick={this.upload}
                     >
                         Upload
                     </button>
-                    {profile_preview}
-                </label>
+                </div>
+                {profile_preview}
 
             </div>
         );

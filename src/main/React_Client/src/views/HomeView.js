@@ -28,7 +28,7 @@ class Home extends React.Component {
                 <link href="cover.css" rel="stylesheet" />
                 <header className="masthead mb-auto">
                     <div className="inner">
-                        <h3 className="masthead-brand">MeDitecter</h3>
+                        <h3 className="masthead-brand">Pill Good</h3>
                         <nav className="nav nav-masthead justify-content-center">
                             <a className="nav-link active" href="#">Home</a>
                             <a className="nav-link" href="#">Features</a>
@@ -37,10 +37,10 @@ class Home extends React.Component {
                     </div>
                 </header>
                 <main role="main" className="inner cover">
-                    <h1 className="cover-heading">Easily search for the medicine <br/>in photos.</h1>
-                    <p className="lead">Medetector analyzes the formulation, shape, and identification of the pill and tells you what kind of medicine it is. <br/>Let's protect our health by keeping and taking the right medication.</p>
-                    <p className="lead">
-                    </p>
+                    <div style={{margin:10}}>
+                        <h1 className="cover-heading">Search for <b>pills</b> easily through pictures</h1>
+                    <p>Medetector analyzes the formulation, shape, and identification of the pill <br/>and tells you what kind of medicine it is. <br/>Let's protect our health by keeping and taking the right medication.</p>
+                    </div>
                     <div>
                         <Slider {...settings}>
                             <div>
@@ -54,7 +54,7 @@ class Home extends React.Component {
                 </main>
                 <footer className="mastfoot mt-auto">
                     <div className="inner">
-                        <p>Source Code for <a href="https://github.com/Silicon-Valley-Online-Internship/">Github</a><br/>made by YoungSeok-Choi, SeoHyeon-Ryu, SeongJin-Ahn and Chan-Park.</p>
+                        <p><br/>Source Code for <a href="https://github.com/Silicon-Valley-Online-Internship/">Github</a><br/>made by YoungSeok-Choi, SeoHyeon-Ryu, SeongJin-Ahn and Chan-Park.</p>
                     </div>
                 </footer>
             </div>
