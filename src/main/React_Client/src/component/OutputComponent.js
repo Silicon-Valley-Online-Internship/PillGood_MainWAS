@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
-
+import Pill_img from "assets/img/pills_example01.jpg"
 export default class OutputComponent extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +21,7 @@ export default class OutputComponent extends Component {
     render() {
         return (
             <div>
+                <img src = {Pill_img} style={{width: 300}}/>
                 <div>
                     <h1 className = "text-center"> Pill Information</h1>
                     <table className = "table table-striped" style={{color:"white"}} >
