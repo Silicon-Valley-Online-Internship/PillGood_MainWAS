@@ -17,7 +17,7 @@ class AllView extends React.Component {
             progress: 0,
             message: "",
             loading: false,
-            PillInfos: []
+            PillInfos: null,//post data : [] -> outp : hasmap -> map[item, i] i is key, tr -> ref : i
         };
     }
     /*
@@ -52,11 +52,12 @@ class AllView extends React.Component {
                 progress: Math.round((100 * event.loaded) / event.total),
             });
         }).then((response) => {
-            this.state.PillInfos.push(response)
+            console.log(response)
+
             this.setState({
-                PillInfos: this.state.PillInfos,
-                message: response.data.message,
+                PillInfos: response,
             });
+
             return UploadService.getFiles();
         }).catch(() => {
             this.setState({
@@ -74,7 +75,14 @@ class AllView extends React.Component {
             selectedFiles: undefined,
         });
     }
-
+/*
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.state.loading){
+       //upload 동시에 다음컴포넌트로 넘어가는 부분 로직! slick에 api호출로 가능한 기능이 있나 봐야할거같음
+       안그러면 click버튼 호출이용해서 넘기는 ? 방식 ! 오래걸릴거같음 ..
+        }
+    }
+*/
     /*
     OutputComponent
     */
@@ -101,7 +109,6 @@ class AllView extends React.Component {
             selectedFiles,
             currentFile,
             progress,
-            PillInfos,
         } = this.state;
 
         let profile_preview = null;
@@ -117,10 +124,7 @@ class AllView extends React.Component {
         /*
         OutputComponent
         */
-        let pill_img = null;
-        //여기서 url 타입에러가 나네용
-        // pill_img =<img src = {PillInfos[0].url} style={{width: 300}}/>
-        pill_img =<img src = {Pill_img} style={{width: 300}}/>
+
 
         return (
             <div className="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
@@ -194,7 +198,11 @@ class AllView extends React.Component {
                             <div>
                                 {/*OutputComponent start*/}
                                 <div>
-                                    {pill_img}
+
+                                    <div>
+                                        <img src={this.state.PillInfos?.url} alt="pill"/>
+                                    </div>
+
                                     <div>
                                         <h1 className = "text-center"> Pill Information</h1>
                                         <table className = "table table-striped" style={{color:"white"}} >
@@ -216,14 +224,13 @@ class AllView extends React.Component {
                                                 (
                                                     <tbody>
                                                     {
-                                                        Object.keys(this.state.NutInfos).map((item, i) => (
-                                                            <tr key={{i}}>
-                                                                <td>{this.state.PillInfos[i].id}</td>
-                                                                <td>{this.state.PillInfos[i].pillname}</td>
-                                                                <td>{this.state.PillInfos[i].company}</td>
-                                                                <td>{this.state.PillInfos[i].engrave}</td>
+                                                       this.state.PillInfos &&
+                                                            <tr>
+                                                                <td>{this.state.PillInfos.id}</td>
+                                                                <td>{this.state.PillInfos.pillname}</td>
+                                                                <td>{this.state.PillInfos.company}</td>
+                                                                <td>{this.state.PillInfos.engrave}</td>
                                                             </tr>
-                                                        ))
 
                                                     }
                                                     </tbody>
@@ -246,12 +253,11 @@ class AllView extends React.Component {
                                                 (
                                                     <tbody>
                                                     {
-                                                        Object.keys(this.state.NutInfos).map((item, i) => (
-                                                            <tr key={{i}}>
-                                                                <td>{this.state.PillInfos[i].effect}</td>
-                                                                <td>{this.state.PillInfos[i].sideeffect}</td>
+                                                        this.state.PillInfos &&
+                                                        <tr>
+                                                                <td>{this.state.PillInfos.effect}</td>
+                                                                <td>{this.state.PillInfos.sideeffect}</td>
                                                             </tr>
-                                                        ))
 
                                                     }
                                                     </tbody>
