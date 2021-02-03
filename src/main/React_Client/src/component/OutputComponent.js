@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import UploadService from "../service/upload-files.service";
-import Pill_img from "assets/img/pills_example01.jpg"
+import Pill_img from "assets/img/pills_example01.jpg";
 export default class OutputComponent extends Component {
     constructor(props) {
         super(props);
