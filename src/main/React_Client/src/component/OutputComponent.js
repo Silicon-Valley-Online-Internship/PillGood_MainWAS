@@ -19,9 +19,14 @@ export default class OutputComponent extends Component {
         });
     }
     render() {
+        /*이미지 객체 생성*/
+        /*파일 받으면.. src에 해당그림 url넣는거...함수 짜야될듯....?*/
+        let pill_img = null;
+        pill_img =<img src = {Pill_img} style={{width: 300}}/>
+
         return (
             <div>
-                <img src = {Pill_img} style={{width: 300}}/>
+                {pill_img}
                 <div>
                     <h1 className = "text-center"> Pill Information</h1>
                     <table className = "table table-striped" style={{color:"white"}} >

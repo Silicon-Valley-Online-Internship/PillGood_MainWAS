@@ -81,12 +81,9 @@ export default class InputComponent extends Component {
         if(this.state.file !== ''){
             if(typeof this.state.file !== 'undefined') {
                 profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>;
-                console.log("사진있음");
-                console.log(this.state.file);
             }
             else {
                 profile_preview = <img className='profile_preview' src={img_preview}></img>;
-                console.log("사진없음");
             }
         }
 
