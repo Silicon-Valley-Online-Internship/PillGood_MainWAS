@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,createRef } from 'react';
 import './HomeView.css';
 import Slider from "react-slick";
 import img_preview from "../assets/img/preview.png";
@@ -10,7 +10,6 @@ class AllView extends React.Component {
         super(props);
         this.selectFile = this.selectFile.bind(this);
         this.upload = this.upload.bind(this);
-
 
         this.state = {
             selectedFiles: undefined,
@@ -69,6 +68,7 @@ class AllView extends React.Component {
         }).finally(() => {
             this.setState({
                 loading:true,
+
             })
         });
 
@@ -76,11 +76,11 @@ class AllView extends React.Component {
             selectedFiles: undefined,
         });
     }
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     if(this.state.loading){
-    //    $('#slider-div').slick("slickNext")
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // if(this.state.loading){
+        //     sliderRef.current.slickNext();
+        // }
+    }
     /*
     OutputComponent
     */
@@ -92,35 +92,35 @@ class AllView extends React.Component {
         });
     }
 
-    translation(){
-        /*
-        esomesol : 에소메졸캡슐
-        moritition : 모티리톤정
-        histal : 하이스탈정
-        rospan : 로스판정
-        doxira : 독시라마이신캡슐
-        */
-        let Engname = this.state.PillInfos?.name;
-        let Korname;
-        if (Engname === 'esomesol') {
-            Korname = '에소메졸캡슐';
-        }
-        else if(Engname ==='moritition'){
-            Korname = '모티리톤정';
-        }
-        else if(Engname ==='histal'){
-            Korname = '하이스탈정';
-        }
-        else if(Engname ==='rospan'){
-            Korname = '로스판정';
-        }
-        else if(Engname ==='mdoxira'){
-            Korname = '독시라마이신캡슐';
-        }
-        else
-            Korname = '죄송합니다 알 수 없는 의약품입니다.';
-        return Korname;
-    }
+    // translation(){
+    //     /*
+    //     esomesol : 에소메졸캡슐
+    //     moritition : 모티리톤정
+    //     histal : 하이스탈정
+    //     rospan : 로스판정
+    //     doxira : 독시라마이신캡슐
+    //     */
+    //     let Engname = this.state.PillInfos?.name;
+    //     let Korname;
+    //     if (Engname === 'esomesol') {
+    //         Korname = '에소메졸캡슐';
+    //     }
+    //     else if(Engname ==='moritition'){
+    //         Korname = '모티리톤정';
+    //     }
+    //     else if(Engname ==='histal'){
+    //         Korname = '하이스탈정';
+    //     }
+    //     else if(Engname ==='rospan'){
+    //         Korname = '로스판정';
+    //     }
+    //     else if(Engname ==='mdoxira'){
+    //         Korname = '독시라마이신캡슐';
+    //     }
+    //     else
+    //         Korname = '죄송합니다 알 수 없는 의약품입니다.';
+    //     return Korname;
+    // }
 
 
     render() {
@@ -131,7 +131,6 @@ class AllView extends React.Component {
             slidesToShow: 1,
             slidesToScroll: 1
         };
-
         /*
         InputComponent
         */
@@ -151,9 +150,34 @@ class AllView extends React.Component {
             }
         }
 
+        if(this.state.loading){
+            this.slider.slickGoTo(1);
+        }
         /*
         OutputComponent
         */
+        const Engname = this.state.PillInfos?.name;
+        console.log(typeof this.state.PillInfos?.name);
+        //var Engname ="esomesol";
+        var Korname;
+
+        if (Engname === 'esomesol') {
+            Korname = '에소메졸캡슐';
+        }
+        else if(Engname ==='moritition'){
+            Korname = '모티리톤정';
+        }
+        else if(Engname ==='histal'){
+            Korname = '하이스탈정';
+        }
+        else if(Engname ==='rospan'){
+            Korname = '로스판정';
+        }
+        else if(Engname ==='mdoxira'){
+            Korname = '독시라마이신캡슐';
+        }
+        else
+            Korname = '죄송합니다 알 수 없는 의약품입니다.';
 
 
         return (
@@ -185,7 +209,7 @@ class AllView extends React.Component {
                         <Typist className={"typiststyle"} >Pill Good은 알약의 제형과 모양, 각인 등을 분석해 어떤 약인지 알려줍니다.<br/>올바른 방법으로 약을 보관하고 복용함으로써 건강을 보호합시다.</Typist>
                         </div>
                     <div>
-                        <Slider {...settings} id="slider-div">
+                        <Slider {...settings} ref={slider => this.slider = slider } >
                             <div >
                                 {/*InputComponent start*/}
 
@@ -235,7 +259,7 @@ class AllView extends React.Component {
 
                                     <div>
 
-                                        <h1 className = "text-center"> {this.state.PillInfos?.name}.</h1>
+                                        <h1 className = "text-center fontIS"> {Korname}</h1>
                                         <table className = "table table-striped" style={{color:"white"}} >
 
                                             <thead>
