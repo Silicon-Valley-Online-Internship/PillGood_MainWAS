@@ -76,14 +76,11 @@ class AllView extends React.Component {
             selectedFiles: undefined,
         });
     }
-/*
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.state.loading){
-       //upload 동시에 다음컴포넌트로 넘어가는 부분 로직! slick에 api호출로 가능한 기능이 있나 봐야할거같음
-       안그러면 click버튼 호출이용해서 넘기는 ? 방식 ! 오래걸릴거같음 ..
-        }
-    }
-*/
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     if(this.state.loading){
+    //    $('#slider-div').slick("slickNext")
+    //     }
+    // }
     /*
     OutputComponent
     */
@@ -120,6 +117,8 @@ class AllView extends React.Component {
         else if(Engname ==='mdoxira'){
             Korname = '독시라마이신캡슐';
         }
+        else
+            Korname = '죄송합니다 알 수 없는 의약품입니다.';
         return Korname;
     }
 
@@ -186,8 +185,8 @@ class AllView extends React.Component {
                         <Typist className={"typiststyle"} >Pill Good은 알약의 제형과 모양, 각인 등을 분석해 어떤 약인지 알려줍니다.<br/>올바른 방법으로 약을 보관하고 복용함으로써 건강을 보호합시다.</Typist>
                         </div>
                     <div>
-                        <Slider {...settings}>
-                            <div>
+                        <Slider {...settings} id="slider-div">
+                            <div >
                                 {/*InputComponent start*/}
 
                                 <div>
