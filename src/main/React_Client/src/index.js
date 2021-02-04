@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from "views/Home.js";
-import Main from "views/Main.js";
-import Service from "views/Service.js";
+import Home from "views/AllView.js";
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 ReactDOM.render(
     // <React.StrictMode>
@@ -24,16 +24,6 @@ ReactDOM.render(
                 path="/home"
                 exact
                 render={props => <Home {...props} />}
-            />
-            <Route
-                path="/main"
-                exact
-                render={props => <Main {...props} />}
-            />
-            <Route
-                path="/service"
-                exact
-                render={props => <Service {...props} />}
             />
             <Redirect to="/" />
         </Switch>
