@@ -11,13 +11,14 @@ class AllView extends React.Component {
         this.selectFile = this.selectFile.bind(this);
         this.upload = this.upload.bind(this);
 
+
         this.state = {
             selectedFiles: undefined,
             currentFile: undefined,
             progress: 0,
             message: "",
             loading: false,
-            PillInfos: null,//post data : [] -> outp : hasmap -> map[item, i] i is key, tr -> ref : i
+            PillInfos: null,
         };
     }
     /*
@@ -93,6 +94,12 @@ class AllView extends React.Component {
             });
         });
     }
+
+    translation(){
+
+    }
+
+
     render() {
         const settings = {
             dots: true,
@@ -204,15 +211,15 @@ class AllView extends React.Component {
                                     </div>
 
                                     <div>
-                                        <h1 className = "text-center"> Pill Information</h1>
+
+                                        <h1 className = "text-center"> {this.state.PillInfos?.name}.</h1>
                                         <table className = "table table-striped" style={{color:"white"}} >
+
                                             <thead>
                                             <tr>
 
-                                                <td> id</td>
-                                                <td> name</td>
-                                                <td> company </td>
-                                                <td> engrave </td>
+                                                <td> 제조회사 </td>
+                                                <td> 각인 </td>
 
                                             </tr>
 
@@ -226,8 +233,6 @@ class AllView extends React.Component {
                                                     {
                                                        this.state.PillInfos &&
                                                             <tr>
-                                                                <td>{this.state.PillInfos.id}</td>
-                                                                <td>{this.state.PillInfos.pillname}</td>
                                                                 <td>{this.state.PillInfos.company}</td>
                                                                 <td>{this.state.PillInfos.engrave}</td>
                                                             </tr>
@@ -240,8 +245,8 @@ class AllView extends React.Component {
                                             <thead>
                                             <tr>
 
-                                                <td> effect </td>
-                                                <td> sideeffect</td>
+                                                <td> 효능 </td>
+                                                <td> 부작용</td>
 
                                             </tr>
 
