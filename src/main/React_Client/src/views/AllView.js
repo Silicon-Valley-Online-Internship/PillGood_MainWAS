@@ -5,6 +5,32 @@ import img_preview from "../assets/img/preview.png";
 import Typist from 'react-typist';
 import UploadService from "../service/upload-files.service";
 
+function translate(engName){
+    //     /*
+    //     esomesol : 에소메졸캡슐
+    //     moritition : 모티리톤정
+    //     histal : 하이스탈정
+    //     rospan : 로스판정
+    //     doxira : 독시라마이신캡슐
+    //     */
+    console.log(engName);
+
+    switch (engName) {
+        case 'esomesol':
+            return '에소메졸캡슐'
+        case 'moritition':
+            return '모티리톤정'
+        case 'histal':
+            return '하이스탈정'
+        case 'rospan':
+            return '로스판정'
+        case 'mdoxira':
+            return '독시라마이신캡슐'
+        default:
+            return '죄송합니다 알 수 없는 의약품입니다.'
+    }
+}
+
 class AllView extends React.Component {
     constructor(props) {
         super(props);
@@ -92,37 +118,6 @@ class AllView extends React.Component {
         });
     }
 
-    // translation(){
-    //     /*
-    //     esomesol : 에소메졸캡슐
-    //     moritition : 모티리톤정
-    //     histal : 하이스탈정
-    //     rospan : 로스판정
-    //     doxira : 독시라마이신캡슐
-    //     */
-    //     let Engname = this.state.PillInfos?.name;
-    //     let Korname;
-    //     if (Engname === 'esomesol') {
-    //         Korname = '에소메졸캡슐';
-    //     }
-    //     else if(Engname ==='moritition'){
-    //         Korname = '모티리톤정';
-    //     }
-    //     else if(Engname ==='histal'){
-    //         Korname = '하이스탈정';
-    //     }
-    //     else if(Engname ==='rospan'){
-    //         Korname = '로스판정';
-    //     }
-    //     else if(Engname ==='mdoxira'){
-    //         Korname = '독시라마이신캡슐';
-    //     }
-    //     else
-    //         Korname = '죄송합니다 알 수 없는 의약품입니다.';
-    //     return Korname;
-    // }
-
-
     render() {
         const settings = {
             dots: true,
@@ -156,28 +151,31 @@ class AllView extends React.Component {
         /*
         OutputComponent
         */
-        const Engname = this.state.PillInfos?.name;
+        /*
+        let Engname = this.state.PillInfos?.name;
         console.log(typeof this.state.PillInfos?.name);
         //var Engname ="esomesol";
         var Korname;
 
-        if (Engname === 'esomesol') {
-            Korname = '에소메졸캡슐';
+        if (Engname=='esomesol') {
+            Korname='에소메졸캡슐';
         }
-        else if(Engname ==='moritition'){
-            Korname = '모티리톤정';
+        else if(Engname=='moritition'){
+            Korname='모티리톤정';
         }
-        else if(Engname ==='histal'){
-            Korname = '하이스탈정';
+        else if(Engname=='histal'){
+            Korname='하이스탈정';
         }
-        else if(Engname ==='rospan'){
-            Korname = '로스판정';
+        else if(Engname=='rospan'){
+            Korname='로스판정';
         }
-        else if(Engname ==='mdoxira'){
-            Korname = '독시라마이신캡슐';
+        else if(Engname=='mdoxira'){
+            Korname='독시라마이신캡슐';
         }
         else
-            Korname = '죄송합니다 알 수 없는 의약품입니다.';
+            Korname='죄송합니다 알 수 없는 의약품입니다.';
+
+         */
 
 
         return (
@@ -259,8 +257,8 @@ class AllView extends React.Component {
 
                                     <div>
 
-                                        <h1 className = "text-center fontIS"> {Korname}</h1>
-                                        <table className = "table table-striped" style={{color:"white"}} >
+                                        <h1 className="text-center-fontIS">{translate(this.state.PillInfos?.pillname)}</h1>
+                                        <table className="table table-striped" style={{color:"white"}} >
 
                                             <thead>
                                             <tr>
