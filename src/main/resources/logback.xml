@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>3.238.25.211:5001</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"></encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta(%-4relative) --- [ %thread{10} ] %cyan(%logger{20}) : %msg%n </pattern>
+        </encoder>
+    </appender>
+
+    <!-- INFO 레벨 이하 로그를 파일로 출력 -->
+    <root level="INFO">
+        <appender-ref ref="STASH"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>
+
