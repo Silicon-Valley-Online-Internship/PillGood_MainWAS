@@ -96,7 +96,31 @@ class AllView extends React.Component {
     }
 
     translation(){
-
+        /*
+        esomesol : 에소메졸캡슐
+        moritition : 모티리톤정
+        histal : 하이스탈정
+        rospan : 로스판정
+        doxira : 독시라마이신캡슐
+        */
+        let Engname = this.state.PillInfos?.name;
+        let Korname;
+        if (Engname === 'esomesol') {
+            Korname = '에소메졸캡슐';
+        }
+        else if(Engname ==='moritition'){
+            Korname = '모티리톤정';
+        }
+        else if(Engname ==='histal'){
+            Korname = '하이스탈정';
+        }
+        else if(Engname ==='rospan'){
+            Korname = '로스판정';
+        }
+        else if(Engname ==='mdoxira'){
+            Korname = '독시라마이신캡슐';
+        }
+        return Korname;
     }
 
 
@@ -204,7 +228,7 @@ class AllView extends React.Component {
                             </div>
                             <div>
                                 {/*OutputComponent start*/}
-                                <div>
+                                <div className={"fontIS"}>
 
                                     <div>
                                         <img src={this.state.PillInfos?.url} alt="pill"/>
