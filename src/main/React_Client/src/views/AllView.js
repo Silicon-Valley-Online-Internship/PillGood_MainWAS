@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import './HomeView.css';
 import Slider from "react-slick";
-import img_preview from "../assets/img/previewimg.jpg";
-import Pill_img from "../assets/img/pills_example01.jpg";
+import img_preview from "../assets/img/preview.png";
+import Typist from 'react-typist';
 import UploadService from "../service/upload-files.service";
 
 class AllView extends React.Component {
@@ -141,19 +141,19 @@ class AllView extends React.Component {
                 <link href="cover.css" rel="stylesheet" />
                 <header className="masthead mb-auto">
                     <div className="inner">
-                        <h3 className="masthead-brand">Pill Good</h3>
-                        <nav className="nav nav-masthead justify-content-center">
-                            <a className="nav-link active" href="#">Home</a>
-                            <a className="nav-link" href="#">Features</a>
-                            <a className="nav-link" href="#">Contact</a>
-                        </nav>
+                        <h3 className="masthead-brand fontRK"><span style={{color:'#a622c7'}}>P</span>ill <span style={{color:'#a622c7'}}>G</span>ood</h3>
+                        {/*<nav className="nav nav-masthead justify-content-center">*/}
+                        {/*    <a className="nav-link active" href="#">Home</a>*/}
+                        {/*    <a className="nav-link" href="#">Features</a>*/}
+                        {/*    <a className="nav-link" href="#">Contact</a>*/}
+                        {/*</nav>*/}
                     </div>
                 </header>
                 <main role="main" className="inner cover">
                     <div style={{margin:10}}>
-                        <h1 className="cover-heading">Search for <b>pills</b> easily through pictures</h1>
-                        <p>Medetector analyzes the formulation, shape, and identification of the pill <br/>and tells you what kind of medicine it is. <br/>Let's protect our health by keeping and taking the right medication.</p>
-                    </div>
+                        <h1 className="cover-heading fontIS">사진을 통해 쉽게 <b>알약</b>을 검색해보세요</h1>
+                        <Typist className={"typiststyle"} >Pill Good은 알약의 제형과 모양, 각인 등을 분석해 어떤 약인지 알려줍니다.<br/>올바른 방법으로 약을 보관하고 복용함으로써 건강을 보호합시다.</Typist>
+                        </div>
                     <div>
                         <Slider {...settings}>
                             <div>
@@ -161,7 +161,7 @@ class AllView extends React.Component {
 
                                 <div>
                                     {currentFile && (
-                                        <div className="progress">
+                                        <div className="progress fontIS">
                                             <div
                                                 className="progress-bar progress-bar-info progress-bar-striped"
                                                 role="progressbar"
@@ -175,7 +175,7 @@ class AllView extends React.Component {
                                         </div>
                                     )}
 
-                                    <div className="filebox bs3-warning">
+                                    <div className="filebox bs3-warning fontIS">
                                         <label style = {{margin:0, marginRight:10}} htmlFor="ex_file2">Find your photo</label>
                                         <input type="file" id="ex_file2"
                                                accept='image/jpg'
