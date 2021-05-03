@@ -23,8 +23,8 @@ This project is a web-based project that supports a function that **recognizes p
 ## The technologies used in this project
 - Client
    - React
-   - Spring
 - Server
+   - Spring
    - Flask
    - AWS 
 - Data processing
